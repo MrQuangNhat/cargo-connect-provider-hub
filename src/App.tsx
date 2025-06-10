@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,6 +15,8 @@ import StaffInfo from "./pages/staff/StaffInfo";
 import StaffUnprocessedOrders from "./pages/staff/StaffUnprocessedOrders";
 import StaffFCLPending from "./pages/staff/StaffFCLPending";
 import StaffProcessedOrders from "./pages/staff/StaffProcessedOrders";
+import CustomerLogin from "./pages/auth/CustomerLogin";
+import CustomerRegister from "./pages/auth/CustomerRegister";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/customer-login" element={<CustomerLogin />} />
+          <Route path="/customer-register" element={<CustomerRegister />} />
           <Route path="/provider" element={<ProviderDashboard />} />
           <Route path="/provider/info" element={<ProviderInfo />} />
           <Route path="/provider/vehicles" element={<ProviderVehicles />} />
