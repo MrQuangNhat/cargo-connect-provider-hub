@@ -11,6 +11,10 @@ import ProviderInfo from "./pages/provider/ProviderInfo";
 import ProviderVehicles from "./pages/provider/ProviderVehicles";
 import ProviderOrders from "./pages/provider/ProviderOrders";
 import ProviderPricing from "./pages/provider/ProviderPricing";
+import StaffDashboard from "./pages/staff/StaffDashboard";
+import StaffInfo from "./pages/staff/StaffInfo";
+import StaffUnprocessedOrders from "./pages/staff/StaffUnprocessedOrders";
+import StaffProcessedOrders from "./pages/staff/StaffProcessedOrders";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +31,10 @@ const App = () => (
           <Route path="/provider/vehicles" element={<ProviderVehicles />} />
           <Route path="/provider/orders" element={<ProviderOrders />} />
           <Route path="/provider/pricing" element={<ProviderPricing />} />
+          <Route path="/staff" element={<StaffDashboard />} />
+          <Route path="/staff/info" element={<StaffInfo />} />
+          <Route path="/staff/unprocessed" element={<StaffUnprocessedOrders />} />
+          <Route path="/staff/processed" element={<StaffProcessedOrders />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
