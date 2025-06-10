@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Truck, Users, Package, UserCheck } from "lucide-react";
+import { Truck, Users, Package, UserCheck, ShieldCheck } from "lucide-react";
 
 const Index = () => {
   return (
@@ -16,7 +16,7 @@ const Index = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -63,6 +63,23 @@ const Index = () => {
               <Button asChild className="w-full" variant="secondary">
                 <Link to="/staff">
                   Đăng nhập Staff
+                </Link>
+              </Button>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <ShieldCheck className="w-8 h-8 text-red-600" />
+              </div>
+              <h3 className="text-2xl font-semibold mb-4">Admin</h3>
+              <p className="text-muted-foreground mb-6">
+                Quản lý hệ thống, người dùng và bảng giá
+              </p>
+              <Button asChild className="w-full" variant="destructive">
+                <Link to="/admin">
+                  Đăng nhập Admin
                 </Link>
               </Button>
             </div>
