@@ -14,6 +14,7 @@ import ProviderPricing from "./pages/provider/ProviderPricing";
 import StaffDashboard from "./pages/staff/StaffDashboard";
 import StaffInfo from "./pages/staff/StaffInfo";
 import StaffUnprocessedOrders from "./pages/staff/StaffUnprocessedOrders";
+import StaffFCLPending from "./pages/staff/StaffFCLPending";
 import StaffProcessedOrders from "./pages/staff/StaffProcessedOrders";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/staff" element={<StaffDashboard />} />
           <Route path="/staff/info" element={<StaffInfo />} />
           <Route path="/staff/unprocessed" element={<StaffUnprocessedOrders />} />
+          <Route path="/staff/fcl-pending" element={<StaffFCLPending />} />
           <Route path="/staff/processed" element={<StaffProcessedOrders />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

@@ -7,8 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useState } from "react";
-import { Package, Truck, Clock } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Package, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const StaffUnprocessedOrders = () => {
@@ -60,6 +60,20 @@ const StaffUnprocessedOrders = () => {
       volume: 1.2,
       createdAt: "2024-01-16",
     },
+    {
+      id: "LCL004",
+      from: "TP.HCM",
+      to: "Hà Nội",
+      containerType: "Dry",
+      customerName: "Phạm Văn D",
+      customerPhone: "0234567890",
+      length: 1.2,
+      width: 1,
+      height: 0.9,
+      weight: 150,
+      volume: 1.08,
+      createdAt: "2024-01-16",
+    },
   ];
 
   const containerSizes = {
@@ -68,12 +82,33 @@ const StaffUnprocessedOrders = () => {
     "40ft-HC": { volume: 76, maxWeight: 26700 },
   };
 
+  // Filter orders based on selection
+  const filteredOrders = useMemo(() => {
+    if (selectedOrders.length === 0) {
+      return lclOrders;
+    }
+
+    const firstSelected = lclOrders.find(order => order.id === selectedOrders[0]);
+    if (!firstSelected) return lclOrders;
+
+    return lclOrders.filter(order => 
+      order.from === firstSelected.from && 
+      order.to === firstSelected.to && 
+      order.containerType === firstSelected.containerType
+    );
+  }, [selectedOrders]);
+
   const handleOrderSelection = (orderId: string, checked: boolean) => {
     if (checked) {
       setSelectedOrders([...selectedOrders, orderId]);
     } else {
       setSelectedOrders(selectedOrders.filter(id => id !== orderId));
     }
+  };
+
+  const isOrderSelectable = (orderId: string) => {
+    if (selectedOrders.length === 0) return true;
+    return filteredOrders.some(order => order.id === orderId);
   };
 
   const getSelectedOrdersInfo = () => {
@@ -121,8 +156,8 @@ const StaffUnprocessedOrders = () => {
       <div className="space-y-6">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Đơn chưa xử lý</h1>
-            <p className="text-muted-foreground">Ghép các đơn LCL cùng tuyến thành đơn FCL</p>
+            <h1 className="text-3xl font-bold text-foreground">Đơn LCL chờ xử lý</h1>
+            <p className="text-muted-foreground">Ghép các đơn LCL cùng tuyến và loại hàng thành đơn FCL</p>
           </div>
           
           <Dialog>
@@ -234,31 +269,38 @@ const StaffUnprocessedOrders = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {lclOrders.map((order) => (
-                  <TableRow key={order.id}>
-                    <TableCell>
-                      <Checkbox
-                        checked={selectedOrders.includes(order.id)}
-                        onCheckedChange={(checked) => handleOrderSelection(order.id, checked as boolean)}
-                      />
-                    </TableCell>
-                    <TableCell className="font-medium">{order.id}</TableCell>
-                    <TableCell>{order.from} → {order.to}</TableCell>
-                    <TableCell>
-                      <Badge variant="outline">{order.containerType}</Badge>
-                    </TableCell>
-                    <TableCell>
-                      <div>
-                        <div className="font-medium">{order.customerName}</div>
-                        <div className="text-sm text-muted-foreground">{order.customerPhone}</div>
-                      </div>
-                    </TableCell>
-                    <TableCell>{order.length}×{order.width}×{order.height}m</TableCell>
-                    <TableCell>{order.volume}m³</TableCell>
-                    <TableCell>{order.weight}kg</TableCell>
-                    <TableCell>{order.createdAt}</TableCell>
-                  </TableRow>
-                ))}
+                {lclOrders.map((order) => {
+                  const isSelectable = isOrderSelectable(order.id);
+                  return (
+                    <TableRow 
+                      key={order.id}
+                      className={!isSelectable ? "opacity-50" : ""}
+                    >
+                      <TableCell>
+                        <Checkbox
+                          checked={selectedOrders.includes(order.id)}
+                          onCheckedChange={(checked) => handleOrderSelection(order.id, checked as boolean)}
+                          disabled={!isSelectable}
+                        />
+                      </TableCell>
+                      <TableCell className="font-medium">{order.id}</TableCell>
+                      <TableCell>{order.from} → {order.to}</TableCell>
+                      <TableCell>
+                        <Badge variant="outline">{order.containerType}</Badge>
+                      </TableCell>
+                      <TableCell>
+                        <div>
+                          <div className="font-medium">{order.customerName}</div>
+                          <div className="text-sm text-muted-foreground">{order.customerPhone}</div>
+                        </div>
+                      </TableCell>
+                      <TableCell>{order.length}×{order.width}×{order.height}m</TableCell>
+                      <TableCell>{order.volume}m³</TableCell>
+                      <TableCell>{order.weight}kg</TableCell>
+                      <TableCell>{order.createdAt}</TableCell>
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
           </CardContent>

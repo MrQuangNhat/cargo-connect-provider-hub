@@ -10,7 +10,8 @@ import {
   X,
   Calendar,
   List,
-  CheckCircle
+  CheckCircle,
+  Truck
 } from "lucide-react";
 
 interface StaffLayoutProps {
@@ -20,7 +21,8 @@ interface StaffLayoutProps {
 const navigation = [
   { name: "Dashboard", href: "/staff", icon: Calendar },
   { name: "Thông tin cá nhân", href: "/staff/info", icon: User },
-  { name: "Đơn chưa xử lý", href: "/staff/unprocessed", icon: Package },
+  { name: "Đơn LCL chờ xử lý", href: "/staff/unprocessed", icon: Package },
+  { name: "Đơn FCL chờ xử lý", href: "/staff/fcl-pending", icon: Truck },
   { name: "Đơn đã xử lý", href: "/staff/processed", icon: CheckCircle },
 ];
 
