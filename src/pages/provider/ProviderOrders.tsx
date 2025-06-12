@@ -154,6 +154,30 @@ export default function ProviderOrders() {
     }
   };
 
+  const handleStartTransit = (orderId: string) => {
+    setOrders(orders.map(order => 
+      order.id === orderId 
+        ? { ...order, status: "in_transit" }
+        : order
+    ));
+    toast({
+      title: "Thành công",
+      description: "Đơn hàng đã bắt đầu vận chuyển",
+    });
+  };
+
+  const handleCompleteOrder = (orderId: string) => {
+    setOrders(orders.map(order => 
+      order.id === orderId 
+        ? { ...order, status: "completed" }
+        : order
+    ));
+    toast({
+      title: "Thành công", 
+      description: "Đơn hàng đã hoàn thành",
+    });
+  };
+
   const getAvailableVehiclesForOrder = (order: any) => {
     return mockAvailableVehicles.filter(vehicle => 
       vehicle.containerType === order.containerType &&
@@ -210,6 +234,24 @@ export default function ProviderOrders() {
                           </div>
                           <div className="flex items-center space-x-2">
                             {getStatusBadge(order.status)}
+                            {order.status === "pending_payment" && (
+                              <Button 
+                                size="sm" 
+                                className="bg-blue-600 hover:bg-blue-700"
+                                onClick={() => handleStartTransit(order.id)}
+                              >
+                                Bắt đầu vận chuyển
+                              </Button>
+                            )}
+                            {order.status === "in_transit" && (
+                              <Button 
+                                size="sm" 
+                                className="bg-green-600 hover:bg-green-700"
+                                onClick={() => handleCompleteOrder(order.id)}
+                              >
+                                Hoàn thành
+                              </Button>
+                            )}
                             <Button size="sm" onClick={() => handleViewOrder(order)}>
                               Xem chi tiết
                             </Button>
