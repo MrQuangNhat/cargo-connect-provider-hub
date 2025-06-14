@@ -8,7 +8,10 @@ import {
   Menu,
   X,
   DollarSign,
-  ShieldCheck
+  ShieldCheck,
+  UserCheck,
+  Truck,
+  Package
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -17,6 +20,10 @@ interface AdminLayoutProps {
 
 const navigation = [
   { name: "Quản lý người dùng", href: "/admin/users", icon: Users },
+  { name: "Quản lý khách hàng", href: "/admin/customers", icon: Users },
+  { name: "Quản lý nhân viên", href: "/admin/staff", icon: UserCheck },
+  { name: "Quản lý đơn vị vận tải", href: "/admin/providers", icon: Truck },
+  { name: "Quản lý đơn vận", href: "/admin/orders", icon: Package },
   { name: "Bảng giá", href: "/admin/pricing", icon: DollarSign },
 ];
 
