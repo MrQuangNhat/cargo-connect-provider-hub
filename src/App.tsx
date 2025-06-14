@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,9 +17,6 @@ import StaffFCLPending from "./pages/staff/StaffFCLPending";
 import StaffProcessedOrders from "./pages/staff/StaffProcessedOrders";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsers from "./pages/admin/AdminUsers";
-import AdminCustomers from "./pages/admin/AdminCustomers";
-import AdminStaff from "./pages/admin/AdminStaff";
-import AdminProviders from "./pages/admin/AdminProviders";
 import AdminOrders from "./pages/admin/AdminOrders";
 import AdminPricing from "./pages/admin/AdminPricing";
 
@@ -46,9 +42,6 @@ const App = () => (
           <Route path="/staff/processed" element={<StaffProcessedOrders />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/users" element={<AdminUsers />} />
-          <Route path="/admin/customers" element={<AdminCustomers />} />
-          <Route path="/admin/staff" element={<AdminStaff />} />
-          <Route path="/admin/providers" element={<AdminProviders />} />
           <Route path="/admin/orders" element={<AdminOrders />} />
           <Route path="/admin/pricing" element={<AdminPricing />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
