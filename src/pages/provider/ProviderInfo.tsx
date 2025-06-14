@@ -35,7 +35,7 @@ export default function ProviderInfo() {
     e.preventDefault();
     toast({
       title: "Thành công",
-      description: "Thông tin đã được cập nhật",
+      description: "Thông tin cá nhân đã được cập nhật",
     });
   };
 
@@ -43,13 +43,12 @@ export default function ProviderInfo() {
     <ProviderLayout>
       <div className="max-w-4xl mx-auto">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-foreground">Thông tin đơn vị</h1>
-          <p className="text-muted-foreground">Quản lý thông tin công ty và cá nhân</p>
+          <h1 className="text-3xl font-bold text-foreground">Thông tin cá nhân đơn vị</h1>
+          <p className="text-muted-foreground">Xem và cập nhật thông tin cá nhân, tài khoản đơn vị vận tải</p>
         </div>
-
         <Card>
           <CardHeader>
-            <CardTitle>Thông tin chi tiết</CardTitle>
+            <CardTitle>Thông tin cá nhân</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -63,7 +62,6 @@ export default function ProviderInfo() {
                     required
                   />
                 </div>
-
                 <div className="space-y-2">
                   <Label htmlFor="companyName">Tên đơn vị vận tải *</Label>
                   <Input
@@ -73,7 +71,6 @@ export default function ProviderInfo() {
                     required
                   />
                 </div>
-
                 <div className="space-y-2">
                   <Label htmlFor="phone">Số điện thoại *</Label>
                   <Input
@@ -83,17 +80,15 @@ export default function ProviderInfo() {
                     required
                   />
                 </div>
-
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
                     type="email"
                     value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    disabled
                   />
                 </div>
-
                 <div className="space-y-2">
                   <Label htmlFor="license">Giấy phép kinh doanh *</Label>
                   <Input
@@ -103,7 +98,6 @@ export default function ProviderInfo() {
                     required
                   />
                 </div>
-
                 <div className="space-y-2">
                   <Label htmlFor="taxCode">Mã số thuế *</Label>
                   <Input
@@ -113,7 +107,6 @@ export default function ProviderInfo() {
                     required
                   />
                 </div>
-
                 <div className="space-y-2">
                   <Label htmlFor="identityCard">Số CCCD/CMND *</Label>
                   <Input
@@ -123,7 +116,6 @@ export default function ProviderInfo() {
                     required
                   />
                 </div>
-
                 <div className="space-y-2">
                   <Label htmlFor="bankAccount">Số tài khoản ngân hàng</Label>
                   <Input
@@ -133,7 +125,6 @@ export default function ProviderInfo() {
                   />
                 </div>
               </div>
-
               <div className="space-y-2">
                 <Label htmlFor="bankName">Tên ngân hàng</Label>
                 <Input
@@ -142,7 +133,6 @@ export default function ProviderInfo() {
                   onChange={(e) => handleInputChange("bankName", e.target.value)}
                 />
               </div>
-
               <div className="space-y-2">
                 <Label htmlFor="address">Địa chỉ *</Label>
                 <Textarea
@@ -153,7 +143,6 @@ export default function ProviderInfo() {
                   required
                 />
               </div>
-
               <div className="space-y-2">
                 <Label htmlFor="notes">Ghi chú</Label>
                 <Textarea
@@ -164,7 +153,6 @@ export default function ProviderInfo() {
                   placeholder="Thông tin bổ sung về đơn vị vận tải..."
                 />
               </div>
-
               <div className="flex gap-4">
                 <Button type="submit">
                   Cập nhật thông tin
