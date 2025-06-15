@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -7,10 +8,7 @@ import {
   Menu,
   X,
   DollarSign,
-  ShieldCheck,
-  UserCheck,
-  Truck,
-  Package
+  ShieldCheck
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -19,9 +17,7 @@ interface AdminLayoutProps {
 
 const navigation = [
   { name: "Quản lý người dùng", href: "/admin/users", icon: Users },
-  { name: "Quản lý đơn vận", href: "/admin/orders", icon: Package },
   { name: "Bảng giá", href: "/admin/pricing", icon: DollarSign },
-  { name: "Thông tin cá nhân", href: "/admin/info", icon: UserCheck }, // thêm route tới trang admin info
 ];
 
 export default function AdminLayout({ children }: AdminLayoutProps) {

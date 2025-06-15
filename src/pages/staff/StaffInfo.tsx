@@ -1,3 +1,4 @@
+
 import StaffLayout from "@/components/staff/StaffLayout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -23,6 +24,7 @@ const StaffInfo = () => {
           <h1 className="text-3xl font-bold text-foreground">Thông tin cá nhân</h1>
           <p className="text-muted-foreground">Quản lý thông tin tài khoản nhân viên</p>
         </div>
+
         <Card className="max-w-2xl">
           <CardHeader>
             <CardTitle>Cập nhật thông tin</CardTitle>
@@ -51,6 +53,7 @@ const StaffInfo = () => {
                   />
                 </div>
               </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="phone">Số điện thoại</Label>
@@ -67,10 +70,10 @@ const StaffInfo = () => {
                     type="email"
                     placeholder="staff@company.com"
                     defaultValue="staff@company.com"
-                    disabled
                   />
                 </div>
               </div>
+
               <div className="space-y-2">
                 <Label htmlFor="address">Địa chỉ</Label>
                 <Input
@@ -79,6 +82,7 @@ const StaffInfo = () => {
                   defaultValue="123 Đường ABC, Quận XYZ, TP.HCM"
                 />
               </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="cccd">Số CCCD</Label>
@@ -98,6 +102,7 @@ const StaffInfo = () => {
                   />
                 </div>
               </div>
+
               <div className="flex justify-end">
                 <Button type="submit" className="bg-purple-600 hover:bg-purple-700">
                   Cập nhật thông tin
